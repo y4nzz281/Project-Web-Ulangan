@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIXEL QUIZ RPL — 8-Bit Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Pixel scanline overlay -->
+  <div class="scanlines"></div>
+  <div class="pixel-stars" id="pixel-stars"></div>
+
+  <!-- ══ SCREEN 1 — HOME ══ -->
+  <div class="screen" id="home-screen">
+    <div class="home-wrap">
+
+      <!-- Title logo -->
+      <div class="pixel-logo">
+        <div class="logo-row1">⚔ RPL QUEST ⚔</div>
+        <div class="logo-row2">ULANGAN HARIAN</div>
+        <div class="logo-blink">▼ PRESS START ▼</div>
+      </div>
+
+      <!-- Character sprite area -->
+      <div class="sprite-area">
+        <div class="hero-sprite" id="hero-sprite">
+          <div class="sprite-shadow"></div>
+        </div>
+        <div class="speech-bubble" id="speech-bubble">
+          SIAP BERTARUNG?
+        </div>
+      </div>
+
+      <!-- Name input -->
+      <div class="name-box">
+        <label class="pixel-label">NAMA PETARUNG:</label>
+        <div class="input-wrap">
+          <span class="input-cursor">▶</span>
+          <input type="text" id="player-name" class="pixel-input" placeholder="MASUKKAN NAMA..." maxlength="16" autocomplete="off"/>
+        </div>
+      </div>
+
+      <!-- Stats card -->
+      <div class="stat-card">
+        <div class="stat-header">📋 INFO QUEST</div>
+        <div class="stat-row">
+          <span class="stat-key">SOAL</span>
+          <span class="stat-dots">··················</span>
+          <span class="stat-val">20</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">WAKTU</span>
+          <span class="stat-dots">················</span>
+          <span class="stat-val">30:00</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">LEVEL</span>
+          <span class="stat-dots">·················</span>
+          <span class="stat-val">★★★</span>
+        </div>
+        <div class="divider-pixel"></div>
+        <div class="topics-row">
+          <span class="chip">RPL</span>
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JS</span>
+          <span class="chip">PHP</span>
+        </div>
+      </div>
+
+      <button class="btn-pixel btn-start" onclick="startQuiz()" id="btn-start-main">
+        <span class="btn-icon">▶</span> MULAI UJIAN!
+      </button>
+
+      <div class="pixel-footer">© 8-BIT ACADEMY 2025 · HIGH SCORE: ???</div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 2 — QUIZ ══ -->
+  <div class="screen hidden" id="quiz-screen">
+    <div class="quiz-wrap">
+
+      <!-- HUD bar -->
+      <div class="hud">
+        <div class="hud-left">
+          <div class="hud-name" id="hud-name">PLAYER</div>
+          <div class="hud-lives">♥♥♥</div>
+        </div>
+        <div class="hud-center">
+          <div class="hud-stage" id="hud-stage">STAGE 1</div>
+        </div>
+        <div class="hud-right">
+          <div class="timer-box" id="timer-box">
+            <span class="timer-icon">⏱</span>
+            <span id="timer-txt">30:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar (EXP bar style) -->
+      <div class="exp-bar-wrap">
+        <span class="exp-label">EXP</span>
+        <div class="exp-bar">
+          <div class="exp-fill" id="exp-fill" style="width:5%"></div>
+          <div class="exp-shine"></div>
+        </div>
+        <span class="exp-count" id="exp-count">1/20</span>
+      </div>
+
+      <!-- Dots / soal map -->
+      <div class="dots-scroll">
+        <div class="dots" id="dots"></div>
+      </div>
+
+      <!-- Question card (pixel dialog box) -->
+      <div class="dialog-box">
+        <div class="dialog-header">
+          <span class="dialog-cat" id="q-cat">RPL Dasar</span>
+          <span class="dialog-num" id="q-num">SOAL 1/20</span>
+        </div>
+        <div class="dialog-text" id="q-text"></div>
+      </div>
+
+      <!-- Options -->
+      <div class="opts" id="opts"></div>
+
+      <!-- Feedback -->
+      <div class="fb-pixel" id="fb" style="display:none;"></div>
+
+      <!-- Nav -->
+      <div class="quiz-nav">
+        <button class="btn-pixel btn-nav" id="btn-prev" onclick="go(-1)">◀ PREV</button>
+        <span class="nav-mid pixel-txt" id="nav-mid">PILIH JAWABAN</span>
+        <button class="btn-pixel btn-nav" id="btn-next" onclick="go(1)">NEXT ▶</button>
+        <button class="btn-pixel btn-finish" id="btn-fin" onclick="finish()">SELESAI ✦</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 3 — RESULT ══ -->
+  <div class="screen hidden" id="result-screen">
+    <div class="result-wrap">
+
+      <div class="result-header">
+        <div class="result-title">GAME OVER</div>
+        <div class="result-subtitle" id="res-subtitle">QUEST SELESAI!</div>
+      </div>
+
+      <!-- Big score display -->
+      <div class="score-display">
+        <div class="score-label">SKOR AKHIR</div>
+        <div class="score-number" id="score-n">000</div>
+        <div class="score-max">/ 100</div>
+      </div>
+
+      <!-- Grade badge -->
+      <div class="grade-badge" id="grade-el">
+        <div class="grade-letter" id="grade-letter">A</div>
+        <div class="grade-desc" id="grade-desc">SANGAT MEMUASKAN</div>
+      </div>
+
+      <!-- Stats table -->
+      <div class="result-stats">
+        <div class="rs-box rs-ok">
+          <div class="rs-icon">✓</div>
+          <div class="rs-val" id="s-ok">0</div>
+          <div class="rs-lbl">BENAR</div>
+        </div>
+        <div class="rs-box rs-err">
+          <div class="rs-icon">✗</div>
+          <div class="rs-val" id="s-err">0</div>
+          <div class="rs-lbl">SALAH</div>
+        </div>
+        <div class="rs-box rs-skip">
+          <div class="rs-icon">-</div>
+          <div class="rs-val" id="s-skip">0</div>
+          <div class="rs-lbl">SKIP</div>
+        </div>
+      </div>
+
+      <p class="res-msg" id="res-sub"></p>
+
+      <div class="result-btns">
+        <button class="btn-pixel btn-retry" onclick="goHome()">⌂ HOME</button>
+        <button class="btn-pixel btn-retry btn-green" onclick="retry()">↺ RETRY</button>
+      </div>
+
+      <div class="pixel-footer">INSERT COIN TO CONTINUE...</div>
+    </div>
+  </div>
+
+  <!-- ══ PIXEL CONFIRM POPUP ══ -->
+  <div class="pixel-overlay hidden" id="pixel-confirm">
+    <div class="pixel-dialog">
+      <div class="pixel-dialog-title">⚠ KONFIRMASI</div>
+      <div class="pixel-dialog-body">
+        <div class="pixel-dialog-icon">?</div>
+        <p class="pixel-dialog-msg">YAKIN MAU AKHIRI<br>UJIAN SEKARANG?</p>
+        <p class="pixel-dialog-sub">Soal yang belum dijawab<br>akan dihitung salah.</p>
+      </div>
+      <div class="pixel-dialog-btns">
+        <button class="btn-pixel btn-confirm-yes" onclick="confirmYes()">✓ YA, SELESAI</button>
+        <button class="btn-pixel btn-confirm-no"  onclick="confirmNo()">✗ TIDAK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
