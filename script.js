@@ -5,26 +5,33 @@
 
 // ── DATA SOAL ──────────────────────────────
 const Q = [
-  { c:"RPL Dasar", q:"Apa kepanjangan dari RPL dalam konteks teknologi informasi?", o:["Rekayasa Perangkat Lunak","Rancangan Program Lengkap","Rekayasa Program Lanjutan","Rencana Pengembangan Logika"], a:0, x:"RPL adalah singkatan dari Rekayasa Perangkat Lunak." },
-  { c:"RPL Dasar", q:"Model SDLC yang menggunakan pendekatan iteratif dan inkremental adalah...", o:["Waterfall","Agile","V-Model","Spiral"], a:1, x:"Model Agile menggunakan pendekatan iteratif dengan sprint-sprint pendek." },
-  { c:"RPL Dasar", q:"Fase dalam SDLC yang bertugas mengidentifikasi kebutuhan pengguna disebut...", o:["Testing","Implementation","Requirements Analysis","Maintenance"], a:2, x:"Requirements Analysis adalah fase untuk mengidentifikasi kebutuhan pengguna dan sistem." },
-  { c:"RPL Dasar", q:"Diagram UML yang menggambarkan hubungan antara aktor dan fungsi sistem disebut...", o:["Class Diagram","Sequence Diagram","Use Case Diagram","Activity Diagram"], a:2, x:"Use Case Diagram menggambarkan interaksi antara aktor dengan fungsi sistem." },
-  { c:"HTML", q:"Tag HTML untuk membuat tautan (hyperlink) ke halaman lain adalah...", o:["<link>","<a>","<href>","<nav>"], a:1, x:"Tag <a> (anchor) digunakan untuk membuat hyperlink." },
-  { c:"HTML", q:"Atribut yang memberikan teks alternatif pada gambar HTML adalah...", o:["title","src","alt","name"], a:2, x:"Atribut alt pada tag <img> memberikan deskripsi gambar untuk aksesibilitas." },
-  { c:"HTML", q:"Tag HTML5 semantik yang mendefinisikan bagian navigasi halaman adalah...", o:["<header>","<menu>","<nav>","<aside>"], a:2, x:"Tag <nav> adalah elemen semantik HTML5 untuk navigasi utama halaman." },
-  { c:"HTML", q:"Atribut yang menghubungkan elemen <label> dengan <input> di form HTML adalah...", o:["name","id","class","for"], a:3, x:"Atribut for pada <label> dihubungkan dengan atribut id pada <input>." },
-  { c:"HTML", q:"Tag untuk membuat daftar terurut (ordered list) di HTML adalah...", o:["<ul>","<li>","<ol>","<list>"], a:2, x:"<ol> membuat daftar bernomor, sedangkan <ul> membuat daftar bullet." },
-  { c:"CSS", q:"Property CSS yang digunakan untuk mengubah warna teks adalah...", o:["text-color","font-color","color","background-color"], a:2, x:"Property color pada CSS mengatur warna teks." },
-  { c:"CSS", q:"Penulisan CSS inline yang benar adalah...", o:['<p class="color:red">','<p style="color:red;">','<p css="color:red;">','<style>p{color:red}</style>'], a:1, x:"CSS inline ditulis menggunakan atribut style langsung pada elemen HTML." },
-  { c:"CSS", q:"Properti CSS untuk mengatur jarak di luar border elemen adalah...", o:["padding","border","margin","spacing"], a:2, x:"Margin mengatur jarak di luar border elemen." },
-  { c:"CSS", q:"Nilai display CSS yang mengaktifkan model tata letak fleksibel adalah...", o:["block","inline","flex","grid"], a:2, x:"display: flex mengaktifkan Flexbox Layout." },
-  { c:"JavaScript", q:"Cara deklarasi variabel di JavaScript modern (ES6+) yang nilainya tidak dapat diubah adalah...", o:["var","let","const","static"], a:2, x:"const digunakan untuk mendeklarasikan variabel konstanta." },
-  { c:"JavaScript", q:"Fungsi JavaScript untuk menampilkan kotak dialog pop-up kepada pengguna adalah...", o:["console.log()","document.write()","alert()","print()"], a:2, x:"alert() menampilkan kotak dialog dengan pesan dan tombol OK." },
-  { c:"JavaScript", q:"Metode array JavaScript untuk menambahkan elemen baru di akhir array adalah...", o:["push()","pop()","shift()","unshift()"], a:0, x:"push() menambahkan elemen ke akhir array." },
-  { c:"JavaScript", q:"Operator perbandingan JavaScript yang membandingkan nilai DAN tipe data adalah...", o:["==","=","===","!=="], a:2, x:"=== (strict equality) membandingkan nilai dan tipe data sekaligus." },
+  // ── RPL DASAR (2 soal) ──
+  { c:"RPL Dasar", q:"Apa kepanjangan dari RPL?", o:["Rekayasa Perangkat Lunak","Rancangan Program Lengkap","Rekayasa Program Lanjutan","Rencana Pengembangan Logika"], a:0, x:"RPL adalah singkatan dari Rekayasa Perangkat Lunak." },
+  { c:"RPL Dasar", q:"Perangkat lunak (software) adalah...", o:["Komponen fisik komputer","Program dan data yang dijalankan komputer","Perangkat keras komputer","Jaringan komputer"], a:1, x:"Software adalah kumpulan program dan data yang dijalankan oleh komputer, berbeda dengan hardware yang bersifat fisik." },
+
+  // ── HTML (8 soal) ──
+  { c:"HTML", q:"Kepanjangan dari HTML adalah...", o:["Hyper Text Markup Language","High Transfer Markup Language","Hyper Transfer Mode Language","Home Tool Markup Language"], a:0, x:"HTML singkatan dari Hyper Text Markup Language, bahasa standar untuk membuat halaman web." },
+  { c:"HTML", q:"Tag HTML yang digunakan untuk membuat judul terbesar adalah...", o:["<h6>","<h3>","<h1>","<title>"], a:2, x:"Tag <h1> adalah heading terbesar di HTML, sedangkan <h6> adalah yang terkecil." },
+  { c:"HTML", q:"Tag HTML untuk membuat paragraf adalah...", o:["<br>","<p>","<div>","<span>"], a:1, x:"Tag <p> digunakan untuk membuat paragraf teks di HTML." },
+  { c:"HTML", q:"Tag HTML untuk membuat tautan (hyperlink) adalah...", o:["<link>","<a>","<href>","<nav>"], a:1, x:"Tag <a> (anchor) digunakan untuk membuat hyperlink ke halaman lain." },
+  { c:"HTML", q:"Tag HTML yang digunakan untuk menampilkan gambar adalah...", o:["<picture>","<media>","<src>","<img>"], a:3, x:"Tag <img> digunakan untuk menampilkan gambar dengan atribut src sebagai lokasi file gambar." },
+  { c:"HTML", q:"Tag untuk membuat daftar tidak terurut (bullet list) di HTML adalah...", o:["<ol>","<li>","<ul>","<list>"], a:2, x:"<ul> (unordered list) membuat daftar dengan bullet, sedangkan <ol> membuat daftar bernomor." },
+  { c:"HTML", q:"Tag HTML yang digunakan untuk membuat teks tebal adalah...", o:["<i>","<u>","<b>","<s>"], a:2, x:"Tag <b> digunakan untuk membuat teks tampil tebal (bold) di HTML." },
+  { c:"HTML", q:"Atribut pada tag <img> yang memberikan teks alternatif gambar adalah...", o:["title","src","alt","name"], a:2, x:"Atribut alt memberikan deskripsi gambar untuk aksesibilitas dan ditampilkan jika gambar gagal dimuat." },
+
+  // ── CSS (5 soal) ──
+  { c:"CSS Dasar", q:"Kepanjangan dari CSS adalah...", o:["Creative Style Sheet","Cascading Style Sheet","Computer Style Sheet","Colorful Style Sheet"], a:1, x:"CSS singkatan dari Cascading Style Sheets, digunakan untuk mengatur tampilan halaman HTML." },
+  { c:"CSS Dasar", q:"Property CSS untuk mengubah warna teks adalah...", o:["text-color","font-color","color","background-color"], a:2, x:"Property color pada CSS digunakan untuk mengatur warna teks." },
+  { c:"CSS Dasar", q:"Property CSS untuk mengubah ukuran huruf adalah...", o:["text-size","font-size","letter-size","word-size"], a:1, x:"Property font-size digunakan untuk mengatur ukuran huruf pada elemen HTML." },
+  { c:"CSS Dasar", q:"Property CSS untuk mengatur warna latar belakang elemen adalah...", o:["color","bg-color","background","background-color"], a:3, x:"Property background-color digunakan untuk mengatur warna latar belakang sebuah elemen." },
+  { c:"CSS Dasar", q:"Cara penulisan komentar di CSS adalah...", o:["// komentar","<!-- komentar -->","/* komentar */","## komentar"], a:2, x:"Komentar di CSS ditulis dengan /* komentar */ dan tidak akan ditampilkan di browser." },
+
+  // ── PHP (5 soal) ──
+  { c:"PHP", q:"Kepanjangan dari PHP adalah...", o:["Personal Home Page","Php Hypertext Preprocessor","Public Home Page","Programming Hypertext Page"], a:1, x:"PHP singkatan dari PHP Hypertext Preprocessor, bahasa pemrograman server-side untuk web." },
   { c:"PHP", q:"Tag pembuka kode PHP yang benar adalah...", o:["<php>","<?php","<script php>","[php]"], a:1, x:"Kode PHP selalu dimulai dengan tag pembuka <?php." },
-  { c:"PHP", q:"Perintah PHP untuk menampilkan output ke browser adalah...", o:["print_r()","var_dump()","echo","return"], a:2, x:"echo digunakan untuk menampilkan satu atau lebih string ke output." },
-  { c:"PHP", q:"Superglobal PHP yang mengambil data dari form dengan metode POST adalah...", o:["$_GET","$_POST","$_REQUEST","$_SESSION"], a:1, x:"$_POST menyimpan data yang dikirimkan melalui form dengan method='POST'." }
+  { c:"PHP", q:"Simbol yang digunakan untuk mendeklarasikan variabel di PHP adalah...", o:["@","#","$","&"], a:2, x:"Di PHP, semua variabel harus diawali dengan tanda dolar ($), contohnya $nama atau $nilai." },
+  { c:"PHP", q:"Perintah PHP untuk menampilkan output ke browser adalah...", o:["print_r()","var_dump()","echo","return"], a:2, x:"echo digunakan untuk menampilkan satu atau lebih string ke output browser." },
+  { c:"PHP", q:"Ekstensi file yang digunakan untuk menyimpan kode PHP adalah...", o:[".html",".js",".php",".py"], a:2, x:"File PHP disimpan dengan ekstensi .php agar dapat diproses oleh server." },
 ];
 
 // ── STATE ──────────────────────────────────
